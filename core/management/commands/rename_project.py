@@ -14,7 +14,16 @@ class Command(BaseCommand):
         old_project_name = kwargs['old_project_name']
         new_project_name = kwargs['new_project_name']
 
-        files_to_rename = [old_project_name + '/settings/base.py', old_project_name + '/wsgi.py', 'manage.py']
+        files_to_rename = [
+            old_project_name + '/urls.py',
+            old_project_name + '/settings/base.py',
+            old_project_name + '/config/templates.py',
+            old_project_name + '/config/staticfiles.py',
+            old_project_name + '/settings/base.py',
+            old_project_name + '/wsgi.py',
+            'manage.py'
+        ]
+
         folder_to_rename = old_project_name
 
         for f in files_to_rename:
