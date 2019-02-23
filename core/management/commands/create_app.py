@@ -5,37 +5,24 @@ from pathlib import Path
 from django.core.management.base import BaseCommand
 
 _init_data = \
-    """
-    __author__ = "Shafikur Rahman"
+"""
+__author__ = "Shafikur Rahman"
 
 
-    from .admin import *
-    from .user import *
-    """
-_admin_data = \
-    """
-    __author__ = "Shafikur Rahman"
+from .urls import *
+"""
+_urls_data = \
+"""
+__author__ = "Shafikur Rahman"
 
 
-    from django.urls import path
+from django.urls import path
 
 
-    urlpatterns = [
+urlpatterns = [
 
-    ]
-    """
-_user_data = \
-    """
-    __author__ = "Shafikur Rahman"
-
-
-    from django.urls import path
-
-
-    urlpatterns = [
-
-    ]
-    """
+]
+"""
 
 
 class Command(BaseCommand):
@@ -66,16 +53,19 @@ class Command(BaseCommand):
 
             for directory in os.listdir(app_path):
                 _current_directory = os.path.join('', directory)
-
                 if _current_directory == 'urls':
                     _init_file = Path(app_path + '/' + _current_directory + '/__init__.py')
                     _urls_file = Path(app_path + '/' + _current_directory + '/urls.py')
+
                     _init_file.touch(exist_ok=True)
                     _urls_file.touch(exist_ok=True)
+
                     _init_file_write = open(_init_file, 'r+')
                     _urls_file_write = open(_urls_file, 'r+')
-                    _init_file_write.write('__author__ = "Shafikur Rahman"\n')
-                    _urls_file_write.write('__author__ = "Shafikur Rahman"\n')
+
+                    _init_file_write.write(_init_data)
+                    _urls_file_write.write(_urls_data)
+
                     _init_file_write.close()
                     _urls_file_write.close()
                 if _current_directory == 'views':
