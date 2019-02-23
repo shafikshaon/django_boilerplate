@@ -156,6 +156,8 @@ __author__ = "Shafikur Rahman"
 
 
 from django.apps import AppConfig
+
+
 class %sConfig(AppConfig):
     name = '%s'\n""" % (app_name, app_name.lower())
                 )
